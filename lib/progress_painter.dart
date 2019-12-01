@@ -16,7 +16,7 @@ class ProgressPainter extends CustomPainter {
   getPaint(Color color) {
     return Paint()
       ..color = color
-      ..strokeCap = StrokeCap.round
+      ..strokeCap = StrokeCap.square
       ..style = PaintingStyle.stroke
       ..strokeWidth = circleWidth;
   }

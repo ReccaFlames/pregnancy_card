@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
+import 'custom_progress_bar.dart';
+import 'home_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,12 +15,11 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   List<Widget> _children;
 
-
   @override
   void initState() {
     _children = [
-      new PlaceholderWidget(),
-      new Container(color: Colors.orangeAccent[100],),
+      new HomePageView(),
+      new CustomProgressBarView(),
       new PlaceholderWidget(),
     ];
     super.initState();
