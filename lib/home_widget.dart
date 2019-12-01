@@ -17,14 +17,13 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     _children = [
-      new PlaceholderWidget(0, key: PageStorageKey('Page1')),
+      new PlaceholderWidget(),
       new Container(color: Colors.orangeAccent[100],),
-      new PlaceholderWidget(1, key: PageStorageKey('Page2')),
+      new PlaceholderWidget(),
     ];
     super.initState();
   }
 
-  final PageStorageBucket bucket = new PageStorageBucket();
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +31,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text('Pregnancy Card'),
       ),
-      body: PageStorage(
-        child: _children[_currentIndex],
-        bucket: bucket,
-      ),
+      body: IndexedStack(
+        index:_currentIndex,
+        children:_children
+    ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
