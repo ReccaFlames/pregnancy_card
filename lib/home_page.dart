@@ -61,13 +61,13 @@ class HomePageViewState extends State<HomePageView> {
                           Text(
                             'Day',
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                             ),
                           ),
                           Text(
                             '211',
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                             ),
                           ),
                         ],
