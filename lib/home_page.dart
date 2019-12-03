@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'custom_progress_bar.dart';
+import 'progress_painter.dart';
 
 class HomePageView extends StatefulWidget {
   @override
@@ -9,49 +9,109 @@ class HomePageView extends StatefulWidget {
 
 class HomePageViewState extends State<HomePageView> {
 
-//  final  = Container(
-//    height: 124.0,
-//    decoration: new BoxDecoration(
-//      color: new Color(0xFF333366),
-//      shape: BoxShape.rectangle,
-//      borderRadius: new BorderRadius.circular(8.0),
-//      boxShadow: <BoxShadow>[
-//        new BoxShadow(
-//          color: Colors.black12,
-//          blurRadius: 10.0,
-//          offset: new Offset(0.0, 10.0),
-//        ),
-//      ],
-//    ),
-//  );
+  myCustomPaint() {
+    return CustomPaint(
+      child: Center(
+        child: Image(
+          image: AssetImage('images/fetus96.png'),
+        ),
+      ),
+      foregroundPainter: ProgressPainter(
+          defaultCircleColor: Colors.amber,
+          percentageCompletedCircleColor: Colors.green,
+          completedPercentage: 40,
+          circleWidth: 10.0),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: new EdgeInsets.all(15.0),
-      child: new Center(
-        child: new Column(
+  myCustomCard() {
+    return Card(
+      elevation: 5.0,
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
-              height: 124.0,
-              decoration: new BoxDecoration(
-                color: new Color(0xFF333366),
-                shape: BoxShape.rectangle,
-                borderRadius: new BorderRadius.circular(8.0),
-                boxShadow: <BoxShadow>[
-                  new BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10.0,
-                    offset: new Offset(0.0, 5.0),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Dzien dobry \nPaulina',
+                  style: TextStyle(
+                    fontSize: 20.0,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            Container(
+              height: 200.0,
+              width: 200.0,
+              padding: EdgeInsets.all(20.0),
+              margin: EdgeInsets.all(5.0),
+              child: myCustomPaint(),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Day',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Text(
+                            '211',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Week',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          Text(
+                            '30',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
     );
   }
 
-}
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: myCustomCard(),
+    );
+  }
 
+}
