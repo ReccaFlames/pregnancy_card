@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'custom_progress_bar.dart';
+import 'progress_painter.dart';
 
 class HomePageView extends StatefulWidget {
   @override
@@ -8,44 +8,123 @@ class HomePageView extends StatefulWidget {
 }
 
 class HomePageViewState extends State<HomePageView> {
+  myCustomPaint() {
+    return CustomPaint(
+      child: Center(
+        child: Image(
+          image: AssetImage('images/fetus96.png'),
+        ),
+      ),
+      foregroundPainter: ProgressPainter(
+          percentageCompletedCircleColor: Theme.of(context).primaryColor,
+          defaultCircleColor: Theme.of(context).primaryColorLight,
+          completedPercentage: 40,
+          circleWidth: 10.0),
+    );
+  }
 
-//  final  = Container(
-//    height: 124.0,
-//    decoration: new BoxDecoration(
-//      color: new Color(0xFF333366),
-//      shape: BoxShape.rectangle,
-//      borderRadius: new BorderRadius.circular(8.0),
-//      boxShadow: <BoxShadow>[
-//        new BoxShadow(
-//          color: Colors.black12,
-//          blurRadius: 10.0,
-//          offset: new Offset(0.0, 10.0),
-//        ),
-//      ],
-//    ),
-//  );
-
-  @override
-  Widget build(BuildContext context) {
+  cardHeader() {
     return Container(
-      padding: new EdgeInsets.all(15.0),
-      child: new Center(
-        child: new Column(
-          children: <Widget>[
-            Container(
-              height: 124.0,
-              decoration: new BoxDecoration(
-                color: new Color(0xFF333366),
-                shape: BoxShape.rectangle,
-                borderRadius: new BorderRadius.circular(8.0),
-                boxShadow: <BoxShadow>[
-                  new BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10.0,
-                    offset: new Offset(0.0, 5.0),
-                  ),
-                ],
+      child: Row(
+        children: <Widget>[
+          Text(
+            'Dzien dobry \nPaulina',
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  cardContent() {
+    return Container(
+      height: 200.0,
+      width: 200.0,
+      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.all(5.0),
+      child: myCustomPaint(),
+    );
+  }
+
+  cardFooter() {
+    return Container(
+      height: 36,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Day',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    Text(
+                      '211',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Week',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    Text(
+                      '30',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  myCustomCard() {
+    return Card(
+      elevation: 5.0,
+      child: Container(
+        height: 200.0,
+        padding: EdgeInsets.all(10.0),
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: cardContent(),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: cardHeader(),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: cardFooter(),
             ),
           ],
         ),
@@ -53,5 +132,8 @@ class HomePageViewState extends State<HomePageView> {
     );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return myCustomCard();
+  }
 }
-
