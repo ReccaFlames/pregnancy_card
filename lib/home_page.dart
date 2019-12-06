@@ -109,9 +109,10 @@ class HomePageViewState extends State<HomePageView> {
   myCustomCard() {
     return Card(
       elevation: 5.0,
+      margin: new EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 6.0),
       child: Container(
         height: 200.0,
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(15.0),
         child: Stack(
           children: <Widget>[
             Align(
@@ -132,8 +133,78 @@ class HomePageViewState extends State<HomePageView> {
     );
   }
 
+  final makeCard = Card(
+    elevation: 5.0,
+    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+    child: Container(
+//      decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+      child: ListTile(
+          leading: Container(
+            padding: EdgeInsets.only(right: 12.0),
+            decoration: new BoxDecoration(
+                border: new Border(
+                    right: new BorderSide(width: 1.0, color: Colors.grey))),
+            child: Icon(Icons.child_friendly, size: 45,),
+          ),
+          title: Text(
+            "Expected date of birth",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Row(
+            children: <Widget>[
+              Text("5 months 24 days")
+            ],
+          ),
+      ),
+    ),
+  );
+
+  double _value = 0.5;
+
+  packageProgress() {
+    return Card(
+      elevation: 5.0,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      child: Container(
+        padding: EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text.rich(
+              TextSpan(
+                children: <InlineSpan>[
+                  TextSpan(
+                    text: "Baby linen progress "
+                  ),
+                  TextSpan(
+                    text: "${_value*100}%",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.grey[500]),
+              ),
+            ),
+            SizedBox(height: 10),
+            LinearProgressIndicator(
+              value: _value,
+              backgroundColor: Theme.of(context).primaryColorLight,
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return myCustomCard();
+    return Column(
+      children: <Widget>[
+        myCustomCard(),
+        makeCard,
+        packageProgress(),
+      ],
+    );
   }
 }

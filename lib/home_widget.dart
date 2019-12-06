@@ -37,6 +37,7 @@ class _HomeState extends State<Home> {
         children:_children
     ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 15.0,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: [
