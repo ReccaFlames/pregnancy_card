@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'placeholder_widget.dart';
 import 'custom_progress_bar.dart';
 import 'home_page.dart';
@@ -25,12 +26,42 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  final f = new DateFormat.yMMMd().format(new DateTime.now());
+
+  createAvatar() {
+    return new Container(
+      width: 40.0,
+      height: 40.0,
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+          image: new NetworkImage('https://i2.wp.com/polskaplyta-polskamuzyka.pl/wp-content/uploads/2019/09/SANAH.jpg?resize=960%2C960'),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: new BorderRadius.all(new Radius.circular(20.0)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey[500],
+            blurRadius: 4.0, // has the effect of softening the shadow
+            spreadRadius: 3.0, // has the effect of extending the shadow
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pregnancy Card'),
+        title: Text('$f \nToday', style: TextStyle(color: Colors.grey[600]),),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: createAvatar(),
+          ),
+        ],
       ),
       body: IndexedStack(
         index:_currentIndex,

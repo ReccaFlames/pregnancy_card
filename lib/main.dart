@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pregnancy Card',
       theme: ThemeData(
-        primaryColor: Colors.pink[100],
-        primaryColorLight: Colors.pink[50],
-        primaryColorDark: Colors.pink[200],
+        primaryColor: Colors.indigo[100],
+        primaryColorLight: Colors.indigo[50],
+        primaryColorDark: Colors.indigo[200],
       ),
       home: Home(),
     );

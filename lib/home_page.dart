@@ -12,7 +12,9 @@ class HomePageViewState extends State<HomePageView> {
     return CustomPaint(
       child: Center(
         child: Image(
-          image: AssetImage('images/fetus96.png'),
+          image: AssetImage('images/embryo200.png'),
+          height: 150,
+          width: 150,
         ),
       ),
       foregroundPainter: ProgressPainter(
@@ -23,14 +25,17 @@ class HomePageViewState extends State<HomePageView> {
     );
   }
 
+  String _user = "Paulina";
+
   cardHeader() {
     return Container(
       child: Row(
         children: <Widget>[
           Text(
-            'Dzien dobry \nPaulina',
+            'Hello \n$_user',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],
@@ -40,8 +45,8 @@ class HomePageViewState extends State<HomePageView> {
 
   cardContent() {
     return Container(
-      height: 200.0,
-      width: 200.0,
+      height: 300.0,
+      width: 300.0,
       padding: EdgeInsets.all(20.0),
       margin: EdgeInsets.all(5.0),
       child: myCustomPaint(),
@@ -50,7 +55,7 @@ class HomePageViewState extends State<HomePageView> {
 
   cardFooter() {
     return Container(
-      height: 36,
+      height: 44,
       child: Row(
         children: <Widget>[
           Expanded(
@@ -64,12 +69,14 @@ class HomePageViewState extends State<HomePageView> {
                       'Day',
                       style: TextStyle(
                         fontSize: 18.0,
+                        color: Colors.grey[600]
                       ),
                     ),
                     Text(
                       '211',
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -88,12 +95,14 @@ class HomePageViewState extends State<HomePageView> {
                       'Week',
                       style: TextStyle(
                         fontSize: 18.0,
+                        color: Colors.grey[600],
                       ),
                     ),
                     Text(
                       '30',
                       style: TextStyle(
-                        fontSize: 18.0,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -109,9 +118,9 @@ class HomePageViewState extends State<HomePageView> {
   myCustomCard() {
     return Card(
       elevation: 5.0,
-      margin: new EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 6.0),
+      margin: new EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
       child: Container(
-        height: 200.0,
+        height: 300.0,
         padding: EdgeInsets.all(15.0),
         child: Stack(
           children: <Widget>[
@@ -199,7 +208,7 @@ class HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
         myCustomCard(),
         makeCard,

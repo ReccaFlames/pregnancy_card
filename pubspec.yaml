@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.15.0
+  intl: ^0.16.0
 
   cupertino_icons: ^0.1.2
 
@@ -21,5 +22,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/fetus96.png
-    - images/fetus96.svg
+    - images/fetus96_light.png
+    - images/fetus120_light.png
+    - images/embryo200.png
     - images/diamond.png
