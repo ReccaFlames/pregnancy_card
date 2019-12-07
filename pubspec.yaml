@@ -21,8 +21,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - images/fetus96.png
-    - images/fetus96_light.png
-    - images/fetus120_light.png
-    - images/embryo200.png
-    - images/diamond.png
+    - images/

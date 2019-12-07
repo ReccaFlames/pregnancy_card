@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'placeholder_widget.dart';
-import 'custom_progress_bar.dart';
+//import 'custom_progress_bar.dart';
 import 'home_page.dart';
+import 'usg_main_widget.dart';
 
 class Home extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _HomeState();
-  }
+  State<StatefulWidget> createState() =>_HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -20,7 +19,7 @@ class _HomeState extends State<Home> {
   void initState() {
     _children = [
       new HomePageView(),
-      new CustomProgressBarView(),
+      new UsgMainPage(),
       new PlaceholderWidget(),
     ];
     super.initState();
