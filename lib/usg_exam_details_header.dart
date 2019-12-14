@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'arc_banner_image.dart';
+import 'usg_exam_edit_page.dart';
 
 class UsgExamHeader extends StatelessWidget {
 
@@ -46,7 +47,10 @@ class UsgExamHeader extends StatelessWidget {
           icon: Icon(Icons.edit, color: Colors.white),
           iconSize: 24,
           onPressed: () {
-            print('Edit Page');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UsgEditPage()),
+            );
           },
         ),
       ],
