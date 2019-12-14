@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_card/baby_linen_page.dart';
 import 'dart:ui';
 import 'progress_painter.dart';
 
@@ -174,37 +175,43 @@ class HomePageViewState extends State<HomePageView> {
     return Card(
       elevation: 5.0,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text.rich(
-              TextSpan(
-                children: <InlineSpan>[
-                  TextSpan(
-                    text: "Baby linen progress "
-                  ),
-                  TextSpan(
-                    text: "${_value*100}%",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ],
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.grey[500]),
+      child: InkWell(
+        onTap: _navigateBabyLinenPage,
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text.rich(
+                TextSpan(
+                  children: <InlineSpan>[
+                    TextSpan(
+                      text: "Baby linen progress "
+                    ),
+                    TextSpan(
+                      text: "${_value*100}%",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0, color: Colors.grey[500]),
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            LinearProgressIndicator(
-              value: _value,
-              backgroundColor: Theme.of(context).primaryColorLight,
-              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-            ),
-          ],
+              SizedBox(height: 10),
+              LinearProgressIndicator(
+                value: _value,
+                backgroundColor: Theme.of(context).primaryColorLight,
+                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  _navigateBabyLinenPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => BabyLinenPage()),);
+  }
 
   @override
   Widget build(BuildContext context) {
