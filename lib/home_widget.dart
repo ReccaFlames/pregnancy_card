@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'placeholder_widget.dart';
-//import 'custom_progress_bar.dart';
+import 'exams_main_page.dart';
 import 'home_page.dart';
+import 'user_profile_page.dart';
 import 'usg_main_widget.dart';
 
 class Home extends StatefulWidget {
@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
     _children = [
       new HomePageView(),
       new UsgMainPage(),
-      new PlaceholderWidget(),
+      new ExamsMainPage(),
     ];
     super.initState();
   }
@@ -28,22 +28,30 @@ class _HomeState extends State<Home> {
   final f = new DateFormat.yMMMd().format(new DateTime.now());
 
   createAvatar() {
-    return new Container(
-      width: 40.0,
-      height: 40.0,
-      decoration: new BoxDecoration(
-        image: new DecorationImage(
-          image: new NetworkImage('https://i2.wp.com/polskaplyta-polskamuzyka.pl/wp-content/uploads/2019/09/SANAH.jpg?resize=960%2C960'),
-          fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => UserProfilePage()),
+        );
+      },
+      child: new Container(
+        width: 40.0,
+        height: 40.0,
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new NetworkImage('https://i2.wp.com/polskaplyta-polskamuzyka.pl/wp-content/uploads/2019/09/SANAH.jpg?resize=960%2C960'),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: new BorderRadius.all(new Radius.circular(20.0)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[500],
+              blurRadius: 4.0, // has the effect of softening the shadow
+              spreadRadius: 3.0, // has the effect of extending the shadow
+            )
+          ],
         ),
-        borderRadius: new BorderRadius.all(new Radius.circular(20.0)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[500],
-            blurRadius: 4.0, // has the effect of softening the shadow
-            spreadRadius: 3.0, // has the effect of extending the shadow
-          )
-        ],
       ),
     );
   }
