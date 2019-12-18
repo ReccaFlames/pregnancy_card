@@ -12,7 +12,7 @@ dependencies:
   flutter_svg: ^0.15.0
   intl: ^0.16.0
   circular_check_box: ^1.0.1
-  image_picker: ^0.6.2+3
+  image_picker: ^0.6.2+2
 
   cupertino_icons: ^0.1.2
 
