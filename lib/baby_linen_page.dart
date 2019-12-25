@@ -1,5 +1,6 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
+import 'package:pregnancy_card/product_details_page.dart';
 
 class BabyLinenPage extends StatefulWidget {
   @override
@@ -103,6 +104,7 @@ class BabyLinenPageState extends State<BabyLinenPage> {
       trailing: IconButton(
         icon: Icon(Icons.info_outline),
         onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage()),);
         },
       ),
 //      onTap: () {
