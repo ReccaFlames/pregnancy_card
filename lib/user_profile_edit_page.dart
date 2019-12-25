@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -12,6 +13,9 @@ class EditUserPage extends StatefulWidget {
 class EditUserPageState extends State<EditUserPage> {
   File _pickedImage;
   String _value = '2019-12-12';
+  String _value2 = '2019-12-12';
+  String _selectedItem = '---';
+  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +114,7 @@ class EditUserPageState extends State<EditUserPage> {
                         children: <Widget>[
                           IconButton(
                               icon: Icon(Icons.date_range),
-                              onPressed: _selectDate
+                              onPressed: _createDatePicker
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -120,7 +124,7 @@ class EditUserPageState extends State<EditUserPage> {
                                   'Last menstrual period'
                               ),
                               Text(
-                                  _value
+                                  DateFormat.yMMMd().format(dateTime)
                               )
                             ],
                           )
@@ -130,7 +134,7 @@ class EditUserPageState extends State<EditUserPage> {
                         children: <Widget>[
                           IconButton(
                               icon: Icon(Icons.date_range),
-                              onPressed: _selectDate
+                              onPressed: _selectDate2
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -140,15 +144,22 @@ class EditUserPageState extends State<EditUserPage> {
                                   'Expected date of birth'
                               ),
                               Text(
-                                  _value
+                                  _value2
                               )
                             ],
                           )
                         ],
                       ),
-                      TextFormField(
-                        decoration:
-                        InputDecoration(labelText: 'Blood group'),
+                      Row(
+                        children: <Widget>[
+                          Text('Blood group'),
+                          FlatButton(
+                            child: Text(
+                                _selectedItem
+                            ),
+                            onPressed: _createBloodPicker,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -161,6 +172,121 @@ class EditUserPageState extends State<EditUserPage> {
     );
   }
 
+  void _createDatePicker() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Color(0xFF737373),
+            height: 260,
+            child: Container(
+              child: _buildDatePickerContent(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(10),
+                  topRight: const Radius.circular(10),
+                ),
+              ),
+            ),
+          );
+        }
+    );
+  }
+
+  _buildDatePickerContent() {
+    DateTime _selectedDate;
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: new EdgeInsets.only(top: 8),
+          color: Colors.amber,
+          height: 200,
+          child: CupertinoDatePicker(
+            initialDateTime: dateTime,
+            mode: CupertinoDatePickerMode.date,
+            onDateTimeChanged: (newDateTime) {
+              _selectedDate = newDateTime;
+            },
+          ),
+        ),
+        FlatButton(
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18.0),
+          ),
+          color: Theme.of(context).primaryColorDark,
+          child: Text(
+            'Select',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          onPressed: () => setState(() {
+            Navigator.pop(context);
+            dateTime = _selectedDate;
+          }),
+        ),
+      ],
+    );
+  }
+
+  void _createBloodPicker() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Color(0xFF737373),
+            height: 240,
+            child: Container(
+              child: _buildBottomNavigationMenu(),
+              decoration: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(10),
+                  topRight: const Radius.circular(10),
+                ),
+              ),
+            ),
+          );
+        }
+    );
+  }
+
+  final bloodGroups = [
+    '0 Rh+',
+    '0 Rh-',
+    'A Rh+',
+    'A Rh-',
+    'B Rh+',
+    'B Rh-',
+    'AB Rh+',
+    'AB Rh-',
+  ];
+
+  _buildBottomNavigationMenu() {
+    return ListView.builder(
+      itemCount: bloodGroups.length,
+      itemBuilder: (context, index) {
+        String item  = bloodGroups[index];
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: ListTile(
+            title: Text(item),
+            onTap: () => _selectItem(item),
+          ),
+        );
+      },
+    );
+  }
+
+  _selectItem(String blood) {
+    Navigator.pop(context);
+    setState(() {
+      _selectedItem = blood;
+    });
+  }
+
   Future _selectDate() async {
     DateTime picked = await showDatePicker(
         context: context,
@@ -168,6 +294,15 @@ class EditUserPageState extends State<EditUserPage> {
         firstDate: new DateTime(2018),
         lastDate: new DateTime(2021));
     if (picked != null) setState(() => _value = DateFormat.yMMMd().format(picked));
+  }
+
+  Future _selectDate2() async {
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2018),
+        lastDate: new DateTime(2021));
+    if (picked != null) setState(() => _value2 = DateFormat.yMMMd().format(picked));
   }
 
   Future _pickImage() async {
