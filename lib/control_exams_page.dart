@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pregnancy_card/control_exam_details_page.dart';
 
 class ControlExamsPage extends StatefulWidget {
   @override
@@ -87,7 +88,10 @@ class ControlExamsPageState extends State<ControlExamsPage> {
           background: Container(),
           child: ListTile(
             onTap: () {
-              print('tapped');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ControlExamDetails()),
+              );
             },
             subtitle: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
