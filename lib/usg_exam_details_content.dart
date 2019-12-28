@@ -24,7 +24,6 @@ class _UsgExamDetailsContentState extends State<UsgExamDetailsContent> {
       'Fetal anatomi':'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     };
 
-
     buildListItem(index) {
       return Container(
         child: Column(

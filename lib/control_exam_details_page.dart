@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pregnancy_card/arc_banner_image.dart';
+import 'package:pregnancy_card/control_exam_edit_page.dart';
 
 class ControlExamDetails extends StatefulWidget {
   @override
@@ -44,10 +45,10 @@ class ControlExamDetailsState extends State<ControlExamDetails> {
           icon: Icon(Icons.edit, color: Colors.white),
           iconSize: 24,
           onPressed: () {
-//            Navigator.push(
-//              context,
-//              MaterialPageRoute(builder: (context) => UsgEditPage()),
-//            );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ControlExamEditPage()),
+            );
           },
         ),
       ],
