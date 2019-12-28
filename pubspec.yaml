@@ -13,6 +13,7 @@ dependencies:
   intl: ^0.16.0
   circular_check_box: ^1.0.1
   image_picker: ^0.6.2+2
+  numberpicker: ^1.1.0
 
   cupertino_icons: ^0.1.2
 
