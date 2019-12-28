@@ -9,54 +9,6 @@ class OtherExamsPage extends StatefulWidget {
 
 class OtherExamsPageState extends State<OtherExamsPage> {
 
-  _createNewExamDialog(BuildContext context) {
-    return showDialog(context: context, builder: (context) {
-        String dropdownValue = 'One';
-        return AlertDialog(
-          content: DropdownButton<String>(
-            value: dropdownValue,
-            iconSize: 24,
-            elevation: 16,
-            style: TextStyle(
-                color: Colors.black,
-            ),
-            underline: Container(
-              height: 2,
-              color: Theme.of(context).primaryColorDark,
-            ),
-            onChanged: (String newValue) {
-              setState(() {
-                dropdownValue = newValue;
-              });
-            },
-            items: <String>['One', 'Two', 'Free', 'Four']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            })
-                .toList(),
-          ),
-          actions: <Widget>[
-            MaterialButton(
-              child: Text('Cancel',),
-              onPressed: () {
-                Navigator.of(context).pop();
-              }
-            ),
-            MaterialButton(
-              child: Text('Submit',),
-              onPressed: () {
-                Navigator.of(context).pop(dropdownValue);
-              }
-            ),
-          ],
-        );
-      }
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -100,9 +52,11 @@ class OtherExamsPageState extends State<OtherExamsPage> {
           color: Colors.white,
         ),
         onPressed: () {
-          _createNewExamDialog(context).then((onValue) {
+          _createOtherExamPicker(context).then((onValue) {
             setState(() {
-              dates.add(DateFormat.yMMMd().format(new DateTime(2019, 10, 25)));
+              if(onValue != null) {
+                dates.add(DateFormat.yMMMd().format(new DateTime(2019, 10, 25)));
+              }
             });
           });
         },
@@ -157,6 +111,49 @@ class OtherExamsPageState extends State<OtherExamsPage> {
           ),
         );
       },
+    );
+  }
+
+  _createOtherExamPicker(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Color(0xFF737373),
+            height: 220,
+            child: Container(
+              child: _buildBottomNavigationMenu(),
+              decoration: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(10),
+                  topRight: const Radius.circular(10),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  final otherExams = <String>['One', 'Two', 'Free', 'Four', 'Five', 'Six'];
+
+  _buildBottomNavigationMenu() {
+    return Column(
+      children: <Widget>[
+        Flexible(
+          child: ListView.builder(
+            itemCount: otherExams.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(otherExams[index]),
+                onTap: () {
+                  Navigator.of(context).pop(otherExams[index]);
+                },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
