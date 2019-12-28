@@ -25,37 +25,41 @@ class _UsgEditPageState extends State<UsgEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Usg Exam')),
-        body: Container(
-            padding:
-            const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            child: Builder(
-                builder: (context) => Form(
-                    key: _formKey,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          _embryoPositionField(),
-                          _placentaPlacementField(),
-                          _pulseField(),
-                          _npoField(),
-                          _flField(),
-                          _abdField(),
-                          _amnioticFluidField(),
-                          _fetalAnatomyField(),
-                          Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 16.0, horizontal: 16.0),
-                              child: RaisedButton(
-                                color: Theme.of(context).primaryColor,
-                                  onPressed: () {
-                                    final form = _formKey.currentState;
-                                    if (form.validate()) {
-                                      form.save();
-                                      _showDialog(context);
-                                    }
-                                  },
-                                  child: Text('Save'))),
-                        ])))));
+        body: ListView(
+          children: <Widget>[
+            Container(
+                padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                child: Builder(
+                    builder: (context) => Form(
+                        key: _formKey,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _embryoPositionField(),
+                              _placentaPlacementField(),
+                              _pulseField(),
+                              _npoField(),
+                              _flField(),
+                              _abdField(),
+                              _amnioticFluidField(),
+                              _fetalAnatomyField(),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 16.0),
+                                  child: RaisedButton(
+                                    color: Theme.of(context).primaryColor,
+                                      onPressed: () {
+                                        final form = _formKey.currentState;
+                                        if (form.validate()) {
+                                          form.save();
+                                          _showDialog(context);
+                                        }
+                                      },
+                                      child: Text('Save'))),
+                            ])))),
+          ],
+        ));
   }
 
   _embryoPositionField() {
