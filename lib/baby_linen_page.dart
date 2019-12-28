@@ -2,6 +2,8 @@ import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
 import 'package:pregnancy_card/product_details_page.dart';
 
+import 'baby_linen_statistics_page.dart';
+
 class BabyLinenPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => BabyLinenPageState();
@@ -32,7 +34,10 @@ class BabyLinenPageState extends State<BabyLinenPage> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BabyLinenStatisticsPage()),
+                    );
                   },
                 ),
               ],
