@@ -52,6 +52,14 @@ class ControlExamEditPageState extends State<ControlExamEditPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: <Widget>[
+          FlatButton(
+            child: Text('SAVE'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
