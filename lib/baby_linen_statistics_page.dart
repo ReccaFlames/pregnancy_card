@@ -33,6 +33,7 @@ class BabyLinenStatisticsPageState extends State<BabyLinenStatisticsPage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
+        elevation: 1,
         margin: EdgeInsets.only(left: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
