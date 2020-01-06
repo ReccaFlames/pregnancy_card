@@ -22,16 +22,7 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xfff7f7f7),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.grey,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        backgroundColor: Colors.transparent,
       ),
       body: Column(
         children: <Widget>[
