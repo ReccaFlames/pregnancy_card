@@ -32,10 +32,9 @@ class _UsgMainPageState extends State<UsgMainPage> {
       itemCount: dates.length,
       itemBuilder: (context, index) {
         return Card(
-          elevation: 5,
+          elevation: 1,
           child: ListTile(
             onTap: () {
-              print('tapped');
               _navigateDetailsPage(index);
             },
             leading: Icon(Icons.track_changes, size: 45,),
