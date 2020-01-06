@@ -18,13 +18,43 @@ class UsgExam {
 }
 
 class _UsgEditPageState extends State<UsgEditPage> {
+
   final _formKey = GlobalKey<FormState>();
   final _usgExam = UsgExam();
+
+  formFieldDecoration({String labelText}) {
+    return InputDecoration(
+      disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(color: Colors.black)),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(color: Colors.black)),
+      labelText: labelText,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Usg Exam')),
+        appBar: AppBar(
+          title: Text('USG Exam'),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: <Widget>[
+            FlatButton(
+              child: Text('SAVE'),
+              onPressed: () {
+                final form = _formKey.currentState;
+                if (form.validate()) {
+                  form.save();
+                  _showDialog(context);
+                }
+              },
+            ),
+          ],
+        ),
         body: ListView(
           children: <Widget>[
             Container(
@@ -44,19 +74,6 @@ class _UsgEditPageState extends State<UsgEditPage> {
                               _abdField(),
                               _amnioticFluidField(),
                               _fetalAnatomyField(),
-                              Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16.0, horizontal: 16.0),
-                                  child: RaisedButton(
-                                    color: Theme.of(context).primaryColor,
-                                      onPressed: () {
-                                        final form = _formKey.currentState;
-                                        if (form.validate()) {
-                                          form.save();
-                                          _showDialog(context);
-                                        }
-                                      },
-                                      child: Text('Save'))),
                             ])))),
           ],
         ));
@@ -64,8 +81,9 @@ class _UsgEditPageState extends State<UsgEditPage> {
 
   _embryoPositionField() {
     return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Embryo position'),
+      decoration: formFieldDecoration(
+        labelText: 'Embryo position',
+      ),
       validator: (value) {
         if (value.isEmpty) {
           return 'Please enter embryo position';
@@ -77,131 +95,160 @@ class _UsgEditPageState extends State<UsgEditPage> {
     );
   }
   _placentaPlacementField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Plancenta Placement'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter placenta placement';
-        }
-        return null;
-      },
-      onSaved: (val) =>
-          setState(() => _usgExam.placentaPlacement = val),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'Plancenta Placement',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter placenta placement';
+          }
+          return null;
+        },
+        onSaved: (val) =>
+            setState(() => _usgExam.placentaPlacement = val),
+      ),
     );
   }
 
   _pulseField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Pulse'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter pulse value';
-        }
-        return null;
-      },
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          WhitelistingTextInputFormatter.digitsOnly
-        ],
-      onSaved: (val) =>
-          setState(() => _usgExam.pulse = val as int),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'Pulse',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter pulse value';
+          }
+          return null;
+        },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+        onSaved: (val) =>
+            setState(() => _usgExam.pulse = val as int),
+      ),
     );
   }
 
   _amnioticFluidField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Amniotic fluid'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter amniotic fluid value';
-        }
-        return null;
-      },
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          WhitelistingTextInputFormatter.digitsOnly
-        ],
-      onSaved: (val) =>
-          setState(() => _usgExam.amnioticFluid = val as int),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'Amniotic fluid',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter amniotic fluid value';
+          }
+          return null;
+        },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+        onSaved: (val) =>
+            setState(() => _usgExam.amnioticFluid = val as int),
+      ),
     );
   }
 
   _npoField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'NPO'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter NPO value';
-        }
-        return null;
-      },
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          WhitelistingTextInputFormatter.digitsOnly
-        ],
-      onSaved: (val) =>
-          setState(() => _usgExam.npo = val as int),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'NPO',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter NPO value';
+          }
+          return null;
+        },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+        onSaved: (val) =>
+            setState(() => _usgExam.npo = val as int),
+      ),
     );
   }
   _flField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'FL'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter FL value';
-        }
-        return null;
-      },
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          WhitelistingTextInputFormatter.digitsOnly
-        ],
-      onSaved: (val) =>
-          setState(() => _usgExam.fl = val as int),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'FL',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter FL value';
+          }
+          return null;
+        },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+        onSaved: (val) =>
+            setState(() => _usgExam.fl = val as int),
+      ),
     );
   }
   _abdField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Abd'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter Abd value';
-        }
-        return null;
-      },
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          WhitelistingTextInputFormatter.digitsOnly
-        ],
-      onSaved: (val) =>
-          setState(() => _usgExam.abd = val as int),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'Abd',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter Abd value';
+          }
+          return null;
+        },
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+        onSaved: (val) =>
+            setState(() => _usgExam.abd = val as int),
+      ),
     );
   }
 
   _fetalAnatomyField() {
-    return TextFormField(
-      decoration:
-      InputDecoration(labelText: 'Fetal anatomy'),
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter fetal anatomy';
-        }
-        return null;
-      },
-      onSaved: (val) =>
-          setState(() => _usgExam.fetalAnatomy = val),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: TextFormField(
+        decoration: formFieldDecoration(
+          labelText: 'Fetal anatomy',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter fetal anatomy';
+          }
+          return null;
+        },
+        onSaved: (val) =>
+            setState(() => _usgExam.fetalAnatomy = val),
+      ),
     );
   }
 
 
 
   _showDialog(BuildContext context) {
+    //TODO fix showing SnackBar
     Scaffold.of(context)
         .showSnackBar(SnackBar(content: Text('Submitting form')));
   }

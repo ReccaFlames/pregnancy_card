@@ -5,8 +5,8 @@ import 'usg_exam_details_content.dart';
 
 class UsgDetailsPage extends StatelessWidget {
 
-  final String _exam;
-  final String _date;
+  String exam;
+  String date;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class UsgDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            UsgExamHeader(_exam, _date),
+            UsgExamHeader(exam, date),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: UsgExamDetailsContent(),
@@ -25,6 +25,6 @@ class UsgDetailsPage extends StatelessWidget {
     );
   }
 
-  UsgDetailsPage(this._exam, this._date);
+  UsgDetailsPage(this.exam, this.date);
 
 }
