@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'control_exams_page.dart';
-import 'other_exams_page.dart';
+import 'control/control_exams_page.dart';
+import 'other/other_exams_page.dart';
 
 class ExamsMainPage extends StatefulWidget {
   @override

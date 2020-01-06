@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_card/baby_linen/product.dart';
 
 class ProductDetailsPage extends StatefulWidget {
+
+  final Product product;
+
+  ProductDetailsPage(this.product);
+
   @override
-  State<StatefulWidget> createState() => ProductDetailsPageState();
+  State<StatefulWidget> createState() => ProductDetailsPageState(product);
 }
 
 class ProductDetailsPageState extends State<ProductDetailsPage> {
+
+  final Product product;
+
+  ProductDetailsPageState(this.product);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +78,6 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
   bool _checked = false;
 
   _productPageBody() {
-
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -79,7 +89,7 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Product 1',
+                  product.getName(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.black87,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'exams_main_page.dart';
+import 'package:pregnancy_card/exams/exams_main_page.dart';
+import 'package:pregnancy_card/user_profile/user_profile_page.dart';
+import '../usg_exam/usg_main_widget.dart';
 import 'home_page.dart';
-import 'user_profile_page.dart';
-import 'usg_main_widget.dart';
 
 class Home extends StatefulWidget {
   @override

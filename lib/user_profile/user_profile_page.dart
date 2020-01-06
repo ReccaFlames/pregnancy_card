@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pregnancy_card/user_profile_edit_page.dart';
+import 'package:pregnancy_card/user_profile/user_profile_edit_page.dart';
 
 class UserProfilePage extends StatefulWidget {
   @override

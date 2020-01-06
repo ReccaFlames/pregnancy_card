@@ -1,6 +1,7 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
-import 'package:pregnancy_card/product_details_page.dart';
+import 'package:pregnancy_card/baby_linen/product.dart';
+import 'package:pregnancy_card/baby_linen/product_details_page.dart';
 
 import 'baby_linen_statistics_page.dart';
 
@@ -73,13 +74,12 @@ class BabyLinenPageState extends State<BabyLinenPage> {
                         Product(7, "Product 7", "Category 7"),
                         ];
 
-  _onReorder(int oldindex, int newIndex) {
+  _onReorder(int oldIndex, int newIndex) {
     setState(() {
-      print("reorder");
-      if(newIndex > oldindex) {
+      if(newIndex > oldIndex) {
         newIndex -= 1;
       }
-      var x = data.removeAt(oldindex);
+      var x = data.removeAt(oldIndex);
       data.insert(newIndex, x);
     });
   }
@@ -103,38 +103,17 @@ class BabyLinenPageState extends State<BabyLinenPage> {
           setState(() =>  product.invertStatus());
         },
       ),
-      key: ObjectKey(product.name),
-      title: Text("${product.name}"),
-      subtitle: Text('${product.category}'),
+      key: ObjectKey(product.getName()),
+      title: Text("${product.getName()}"),
+      subtitle: Text('${product.getCategory()}'),
       trailing: IconButton(
         icon: Icon(Icons.info_outline),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product)),);
         },
       ),
-//      onTap: () {
-//        print("TAP");
-//        setState(() =>  product.invertStatus());
-//      },
     );
   }
 
 }
 
-class Product {
-  int id;
-  String name;
-  String category;
-  bool _status = false;
-
-  Product(this.id, this.name, this.category);
-
-  getStatus() {
-    return _status;
-  }
-
-  invertStatus() {
-    _status = !_status;
-  }
-
-}

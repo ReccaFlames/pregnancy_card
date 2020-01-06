@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pregnancy_card/baby_linen_page.dart';
+import 'package:pregnancy_card/baby_linen/baby_linen_page.dart';
 import 'dart:ui';
-import 'progress_painter.dart';
+import '../commons/progress_painter.dart';
 
 class HomePageView extends StatefulWidget {
   @override

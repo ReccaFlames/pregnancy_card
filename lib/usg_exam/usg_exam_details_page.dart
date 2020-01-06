@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_card/usg_exam/usg_exam_details_header.dart';
 
 import 'usg_exam_details_content.dart';
-import 'usg_exam_details_header.dart';
 
 class UsgDetailsPage extends StatelessWidget {
 
-  String _exam;
-  String _date;
+  final String _exam;
+  final String _date;
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'progress_painter.dart';
 import 'dart:ui';
 import 'dart:async';
+
+import 'progress_painter.dart';
 
 class CustomProgressBarView extends StatefulWidget {
   @override

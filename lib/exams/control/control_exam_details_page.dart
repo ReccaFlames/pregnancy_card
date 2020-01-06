@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pregnancy_card/arc_banner_image.dart';
-import 'package:pregnancy_card/control_exam_edit_page.dart';
+import 'package:pregnancy_card/commons/arc_banner_image.dart';
+
+import 'control_exam_edit_page.dart';
 
 class ControlExamDetails extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_card/commons/arc_banner_image.dart';
 
-import 'arc_banner_image.dart';
 import 'usg_exam_edit_page.dart';
 
 class UsgExamHeader extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pregnancy_card/control_exam_details_page.dart';
+import 'package:pregnancy_card/exams/control/control_exam_details_page.dart';
 
 class ControlExamsPage extends StatefulWidget {
   @override
