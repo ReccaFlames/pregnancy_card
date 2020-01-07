@@ -12,10 +12,21 @@ class EditUserPage extends StatefulWidget {
 
 class EditUserPageState extends State<EditUserPage> {
   File _pickedImage;
-  String _value = '2019-12-12';
-  String _value2 = '2019-12-12';
   String _selectedItem = '---';
   DateTime dateTime = DateTime.now();
+  DateTime dateTime2 = DateTime.now();
+
+  formFieldDecoration({String labelText}) {
+    return InputDecoration(
+      disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(color: Colors.black)),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(color: Colors.black)),
+      labelText: labelText,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,145 +35,129 @@ class EditUserPageState extends State<EditUserPage> {
     final String imgUrl =
         'https://i2.wp.com/polskaplyta-polskamuzyka.pl/wp-content/uploads/2019/09/SANAH.jpg?resize=960%2C960';
 
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            color: Colors.white,
-          ),
-          ClipPath(
-            clipper: ArcClipper(),
-            child: Container(
-              height: MediaQuery.of(context).size.height / 3.5,
-              width: MediaQuery.of(context).size.width,
-              color: Theme.of(context).primaryColor,
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        actions: <Widget>[
+          MaterialButton(
+            onPressed: () {},
+            child: Text(
+              'Save',
+              style: TextStyle(
+                fontSize: 19,
+              ),
             ),
           ),
-          Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              backgroundColor: Colors.transparent,
-              actions: <Widget>[
-                MaterialButton(
-                  onPressed: () {
-//                    Navigator.push(
-//                      context,
-//                      MaterialPageRoute(builder: (context) => EditUserPage()),
-//                    );
-                  },
-                  child: Text(
-                    'Save',
-                    style: TextStyle(
-                      fontSize: 19,
+        ],
+      ),
+//            backgroundColor: Colors.transparent,
+      body: ListView(
+        children: <Widget>[
+          Center(
+            child: Stack(
+              children: <Widget>[
+                UserAvatar(
+                  radius: _width < _height ? _width / 4 : _height / 4,
+                  image: _pickedImage == null
+                      ? new NetworkImage(imgUrl)
+                      : FileImage(_pickedImage),
+                  userName: 'Paulina Jozwik',
+                  phoneNumber: '+48 875 392 402',
+                ),
+                Positioned(
+                  right: -12.0,
+                  child: RawMaterialButton(
+                    onPressed: _pickImage,
+                    child: new Icon(
+                      Icons.edit,
+                      color: Theme.of(context).primaryColorDark,
+                      size: 25.0,
                     ),
+                    shape: new CircleBorder(),
+                    elevation: 2.0,
+                    fillColor: Colors.white,
+                    padding: const EdgeInsets.all(8.0),
                   ),
                 ),
               ],
             ),
-            backgroundColor: Colors.transparent,
-            body: Column(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
               children: <Widget>[
-                Center(
-                  child: Stack(
-                    children: <Widget>[
-                      UserAvatar(
-                        radius: _width < _height ? _width / 4 : _height / 4,
-                        image: _pickedImage == null
-                            ? new NetworkImage(imgUrl)
-                            : FileImage(_pickedImage),
-                        userName: 'Paulina Jozwik',
-                        phoneNumber: '+48 875 392 402',
-                      ),
-                      Positioned(
-                        right: -12.0,
-                        child: RawMaterialButton(
-                          onPressed: _pickImage,
-                          child: new Icon(
-                            Icons.edit,
-                            color: Theme.of(context).primaryColorDark,
-                            size: 25.0,
-                          ),
-                          shape: new CircleBorder(),
-                          elevation: 2.0,
-                          fillColor: Colors.white,
-                          padding: const EdgeInsets.all(8.0),
-                        ),
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    decoration: formFieldDecoration(
+                      labelText: 'User name',
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'User name'),
-                      ),
-                      TextFormField(
-                        decoration:
-                        InputDecoration(labelText: 'Phone number'),
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.numberWithOptions(),
-                        decoration: InputDecoration(labelText: 'Pesel'),
-                      ),
-                      TextFormField(
-                        decoration:
-                        InputDecoration(labelText: 'Address'),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                              icon: Icon(Icons.date_range),
-                              onPressed: _createDatePicker
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                  'Last menstrual period'
-                              ),
-                              Text(
-                                  DateFormat.yMMMd().format(dateTime)
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                              icon: Icon(Icons.date_range),
-                              onPressed: _selectDate2
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                  'Expected date of birth'
-                              ),
-                              Text(
-                                  _value2
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text('Blood group'),
-                          FlatButton(
-                            child: Text(
-                                _selectedItem
-                            ),
-                            onPressed: _createBloodPicker,
-                          ),
-                        ],
-                      ),
-                    ],
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    decoration: formFieldDecoration(
+                      labelText: 'Phone number',
+                    ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.numberWithOptions(),
+                    decoration: formFieldDecoration(
+                      labelText: 'Pesel',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: TextFormField(
+                    decoration: formFieldDecoration(
+                      labelText: 'Address',
+                    ),
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.date_range),
+                        onPressed: _createDatePicker),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Last menstrual period'),
+                        Text(DateFormat.yMMMd().format(dateTime))
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.date_range),
+                        onPressed: _createDatePickerEDB),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Expected date of birth'),
+                        Text(DateFormat.yMMMd().format(dateTime2))
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Text('Blood group'),
+                    FlatButton(
+                      child: Text(_selectedItem),
+                      onPressed: _createBloodPicker,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -190,8 +185,7 @@ class EditUserPageState extends State<EditUserPage> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 
   _buildDatePickerContent() {
@@ -212,7 +206,7 @@ class EditUserPageState extends State<EditUserPage> {
         ),
         FlatButton(
           shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18.0),
+            borderRadius: new BorderRadius.circular(18.0),
           ),
           color: Theme.of(context).primaryColorDark,
           child: Text(
@@ -225,6 +219,64 @@ class EditUserPageState extends State<EditUserPage> {
           onPressed: () => setState(() {
             Navigator.pop(context);
             dateTime = _selectedDate;
+          }),
+        ),
+      ],
+    );
+  }
+
+  void _createDatePickerEDB() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            color: Color(0xFF737373),
+            height: 260,
+            child: Container(
+              child: _buildDatePickerContentEDB(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(10),
+                  topRight: const Radius.circular(10),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  _buildDatePickerContentEDB() {
+    DateTime _selectedDate;
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: new EdgeInsets.only(top: 8),
+          color: Colors.amber,
+          height: 200,
+          child: CupertinoDatePicker(
+            initialDateTime: dateTime2,
+            mode: CupertinoDatePickerMode.date,
+            onDateTimeChanged: (newDateTime) {
+              _selectedDate = newDateTime;
+            },
+          ),
+        ),
+        FlatButton(
+          shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
+          color: Theme.of(context).primaryColorDark,
+          child: Text(
+            'Select',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          onPressed: () => setState(() {
+            Navigator.pop(context);
+            dateTime2 = _selectedDate;
           }),
         ),
       ],
@@ -249,8 +301,7 @@ class EditUserPageState extends State<EditUserPage> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 
   final bloodGroups = [
@@ -268,7 +319,7 @@ class EditUserPageState extends State<EditUserPage> {
     return ListView.builder(
       itemCount: bloodGroups.length,
       itemBuilder: (context, index) {
-        String item  = bloodGroups[index];
+        String item = bloodGroups[index];
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: ListTile(
@@ -287,75 +338,61 @@ class EditUserPageState extends State<EditUserPage> {
     });
   }
 
-  Future _selectDate() async {
-    DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: new DateTime.now(),
-        firstDate: new DateTime(2018),
-        lastDate: new DateTime(2021));
-    if (picked != null) setState(() => _value = DateFormat.yMMMd().format(picked));
-  }
-
-  Future _selectDate2() async {
-    DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: new DateTime.now(),
-        firstDate: new DateTime(2018),
-        lastDate: new DateTime(2021));
-    if (picked != null) setState(() => _value2 = DateFormat.yMMMd().format(picked));
-  }
-
   Future _pickImage() async {
     final imageSource = await showDialog<ImageSource>(
         context: context,
         builder: (context) => AlertDialog(
               title: Center(child: Text("Select the image source")),
-              content: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  MaterialButton(
-                    child: Container(
-                      height: 45,
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.camera_alt,
-                            color: Colors.grey[600],
-                          ),
-                          Text(
-                            "Camera",
-                            style: TextStyle(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              content: Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    MaterialButton(
+                      child: Container(
+                        height: 45,
+                        child: Column(
+                          children: <Widget>[
+                            Icon(
+                              Icons.camera_alt,
                               color: Colors.grey[600],
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Camera",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                      onPressed: () => Navigator.pop(context, ImageSource.camera),
                     ),
-                    onPressed: () => Navigator.pop(context, ImageSource.camera),
-                  ),
-                  MaterialButton(
-                    child: Container(
-                      height: 45,
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.folder_shared,
-                            color: Colors.grey[600],
-                          ),
-                          Text(
-                            "Gallery",
-                            style: TextStyle(
+                    MaterialButton(
+                      child: Container(
+                        height: 45,
+                        child: Column(
+                          children: <Widget>[
+                            Icon(
+                              Icons.folder_shared,
                               color: Colors.grey[600],
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Gallery",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    onPressed: () =>
-                        Navigator.pop(context, ImageSource.gallery),
-                  )
-                ],
+                      onPressed: () =>
+                          Navigator.pop(context, ImageSource.gallery),
+                    )
+                  ],
+                ),
               ),
             ));
 

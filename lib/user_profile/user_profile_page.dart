@@ -24,7 +24,7 @@ class UserProfilePageState extends State<UserProfilePage> {
           ClipPath(
             clipper: ArcClipper(),
             child: Container(
-              height: MediaQuery.of(context).size.height/1.9,
+              height: 335,
               width: MediaQuery.of(context).size.width,
               color: Theme.of(context).primaryColor,
             ),

@@ -245,8 +245,6 @@ class _UsgEditPageState extends State<UsgEditPage> {
     );
   }
 
-
-
   _showDialog(BuildContext context) {
     //TODO fix showing SnackBar
     Scaffold.of(context)
