@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:pregnancy_card/commons/number_text_field.dart';
+import 'package:pregnancy_card/commons/roundedButton.dart';
 
 class ControlExamEditPage extends StatefulWidget {
   @override
@@ -326,18 +327,8 @@ class ControlExamEditPageState extends State<ControlExamEditPage> {
             },
           ),
         ),
-        FlatButton(
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(18.0),
-          ),
-          color: Theme.of(context).primaryColorDark,
-          child: Text(
-            'Select',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
+        RoundedFlatButton(
+          displayedText: 'Select',
           onPressed: () => setState(() {
             Navigator.pop(context);
             _examDate = _selectedDate;
